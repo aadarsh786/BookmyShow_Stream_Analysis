@@ -124,6 +124,7 @@ A cloud storage service where the processed Parquet files are stored temporarily
   https://github.com/aadarsh786/BookmyShow_Stream_Analysis/blob/main/stream_analytics_job_query.sql
    </br>
  -  
+  https://github.com/aadarsh786/BookmyShow_Stream_Analysis/blob/main/synapse_create_table.sql
   
   
   
