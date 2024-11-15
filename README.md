@@ -97,7 +97,7 @@ The BookMyShow Stream Analysis project is designed to simulate a real-time data 
 
 <h3>SQL(Data Transformation):</h3>
 
-    Used to write a queries for data transformation and perform joins.
+Used to write a queries for data transformation and perform joins.
 
 
 <h3>Python(Data Generation):</h3>
