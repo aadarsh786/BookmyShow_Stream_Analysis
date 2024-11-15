@@ -77,23 +77,27 @@ Airflow manages and schedules the pipeline, triggering data fetching, processing
 
 ## TECHNOLOGY USED :-
 
-<h3>Azure Event Hub:</h3>
+<h3>SQL:</h3>
 
 Orchestrates the entire workflow by defining tasks that automate fetching, processing, saving, and uploading data.
 
-<h3>Azure Stream Analytics Job:</h3>
-
-Used for scripting the logic for data fetching, processing, and file handling.
-
-<h3>Azure Synapse:</h3>
-
-Provides news data based on search queries. It offers access to various news articles, including their metadata, such as title, author, and content.
 
 <h3>Python:</h3>
 
+Used for scripting the logic for data fetching, processing, and file handling.
+
+<h3>Azure Event Hub:</h3> 
+
+
+Provides news data based on search queries. It offers access to various news articles, including their metadata, such as title, author, and content.
+
+
+<h3>Azure Synapse:</h3>
+
 A Python library used to handle the structured data (articles) in a DataFrame, process it, and save it to disk in a columnar format (Parquet).
 
-<h3>Pyspark:</h3>
+
+<h3>Azure Stream Analytics job:</h3>
 
 A cloud storage service where the processed Parquet files are stored temporarily before being ingested into Snowflake.
 
@@ -106,32 +110,26 @@ A cloud storage service where the processed Parquet files are stored temporarily
 
 
 ## Script Files  :-
-* <h3>Python-File:
-[Python-code-snippet](prac2.py) - Contains the core functions for fetching and processing data, and uploading it to GCS. </h3>
+* <h3>Python-Files: </h3>
+- [Python-code-snippet](prac2.py) - Contains the core functions for fetching and processing data, and uploading it to GCS. 
+  </br>
+- [Python-code-snippet](prac2.py) - Contains the core functions for fetching and processing data, and uploading it to GCS. 
+
+
  </br>
  </br>
  
- * <h3>Airflow-Dag :
-  [Airflow-Dag-file](airflowjobprac.py) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
+  <h3>Sql snippet:</h3>
+ - [Airflow-Dag-file](airflowjobprac.py) -  Defines the workflow and schedules the data pipeline tasks.  
+   </br>
+ -  [Airflow-Dag-file](airflowjobprac.py) -  Defines the workflow and schedules the data pipeline tasks.  
+  
   
 
   </br>
   </br>
+
   
-## Resulted output :- 
-
-<h3>The output is stored in Parquet format with unique filenames that reflect the datetime of each run.</h3>
-
- - <h3>Output_link_1 :</h3>
-  [Result1](https://github.com/aadarsh786/News-Data-Analysis-Project/blob/main/SNOWFLAKE_PROJECT_PARQUET_FILES_run_20241105064621.parquet)
-
- - <h3>Output_link_2 :</h3>
-  [Result2](https://github.com/aadarsh786/News-Data-Analysis-Project/blob/main/SNOWFLAKE_PROJECT_PARQUET_FILES_run_20241105064940.parquet)
-
-
-
-
-
 
 
 
