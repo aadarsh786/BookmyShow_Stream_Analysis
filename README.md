@@ -25,7 +25,7 @@ The BookMyShow Stream Analysis project is designed to simulate a real-time data 
 
    * Generates data for each booking, including order ID, booking time, customer information, and event details.
    * Data is pushed to the bookingtopic in Event Hubs every 5 seconds.
-   </br>
+     
    <h4>Payment Data </h4>
 
   * Generates corresponding payment data for each booking, including payment ID, order ID, amount, payment method, and status.
