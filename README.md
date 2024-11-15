@@ -15,81 +15,48 @@ The BookMyShow Stream Analysis project is designed to simulate a real-time data 
  </br>
 
 
-### PROJECT EXPLANATION :-  
+## PROJECT EXPLANATION :-  
 
 
- #### 1.Data Generation and Ingestion
+ ### 1.Data Generation and Ingestion
   Two Python scripts generate mock booking and payment data using the Faker library:
 
-  * <h4>Booking Data </h4>
+   <h4>Booking Data </h4>
 
-   *  Generates data for each booking, including order ID, booking time, customer information, and event details.
-   *  Data is pushed to the bookingtopic in Event Hubs every 5 seconds.
-
+   * Generates data for each booking, including order ID, booking time, customer information, and event details.
+   * Data is pushed to the bookingtopic in Event Hubs every 5 seconds.
    </br>
-   * Payment Data (mock_payments.py):
+   <h4>Payment Data </h4>
 
-   Generates corresponding payment data for each booking, including payment ID, order ID, amount, payment method, and status.
-   Data is pushed to the paymenttopic in Event Hubs every 5 seconds.
-   Each record is serialized into JSON format, encapsulated as EventData, and sent in real-time to the respective Event Hubs topics.
+  * Generates corresponding payment data for each booking, including payment ID, order ID, amount, payment method, and status.
+  * Data is pushed to the paymenttopic in Event Hubs every 5 seconds.
+    
+ Each record is serialized into JSON format, encapsulated as EventData, and sent in real-time to the respective Event Hubs topics.
 
-#### 2. Real-Time Data Processing with Stream Analytics
-   Azure Stream Analytics performs SQL-based real-time transformations on the booking and payment data streams. This setup includes:
+### 2. Real-Time Data Processing with Stream Analytics
+  * Azure Stream Analytics performs SQL-based real-time transformations on the booking and payment data streams. This setup includes:
 
-   Booking Data Transformation:
-   Extracts information from the bookingtopic, including customer details, event information, seat number, price, and timestamp.
-   Categorizes events based on names (e.g., concerts categorized as "Music").
-   Calculates additional fields like booking_day_of_week and booking_hour for time-based analysis.
-Example SQL Query Snippet:
-sql
-Copy code
-WITH TransformedBookingStream AS (
-    SELECT event.order_id, 
-           TRY_CAST(event.booking_time AS datetime) AS booking_time,
-           event.customer.customer_id,
-           event.customer.name AS customer_name,
-           ...
-)
-Payment Data Transformation:
-Extracts and transforms payment records from the paymenttopic, including fields like payment method, amount, and payment time.
-Aggregates the payment method into types (e.g., "Card" for credit/debit and "Online" for PayPal).
-Example SQL Query Snippet:
-sql
-Copy code
-WITH TransformedPaymentStream AS (
-    SELECT payment_id,
-           order_id,
-           TRY_CAST(payment_time AS datetime) AS payment_time,
-           ...
-)
-Joining Booking and Payment Data Streams:
-The transformed booking and payment streams are joined on order_id, with a condition ensuring records are joined only if their timestamps differ by 2 minutes or less.
-The combined data is selected for storage in Synapse.
-Final SQL Query:
-sql
-Copy code
-SELECT b.order_id, b.booking_time, ..., p.payment_time, ..., b.event_time, p.event_time
-INTO [bookings-synapse]
-FROM TransformedBookingStream b
-JOIN TransformedPaymentStream p
-ON b.order_id = p.order_id AND DATEDIFF(minute, b, p) BETWEEN 0 AND 2;
-3. Data Storage in Azure Synapse Analytics
-Processed booking and payment data is stored in a structured table within Azure Synapse Analytics:
+   #### Booking Data Transformation:
+  * Extracts information from the bookingtopic, including customer details, event information, seat number, price, and timestamp.
+  * Categorizes events based on names (e.g., concerts categorized as "Music").
+  * Calculates additional fields like booking_day_of_week and booking_hour for time-based analysis.
+    
 
-Table Schema: The destination table, bookymyshow.bookings_fact, is structured to hold detailed information on bookings and payments.
 
-SQL Schema Definition:
-sql
-Copy code
-CREATE TABLE bookymyshow.bookings_fact (
-    order_id NVARCHAR(50) NOT NULL,
-    booking_time DATETIME2,
-    customer_id NVARCHAR(50),
-    customer_name NVARCHAR(100),
-    ...
-    payment_event_time DATETIME2
-);
-Data Storage and Querying: The enriched and processed data in Synapse can now be queried for insights, such as popular event categories, preferred payment methods, peak booking times, etc.
+  #### Payment Data Transformation:
+* Extracts and transforms payment records from the paymenttopic, including fields like payment method, amount, and payment time.
+* Aggregates the payment method into types (e.g., "Card" for credit/debit and "Online" for PayPal).
+     
+
+#### Joining Booking and Payment Data Streams:
+* The transformed booking and payment streams are joined on order_id, with a condition ensuring records are joined only if their timestamps differ by 2 minutes or less.
+* The combined data is selected for storage in Synapse.
+  
+#### Table Schema: 
+* The destination table, bookymyshow.bookings_fact, is structured to hold detailed information on bookings and payments.
+
+#### Data Storage and Querying:
+* The enriched and processed data in Synapse can now be queried for insights, such as popular event categories, preferred payment methods, peak booking times, etc.
 
 
 
@@ -102,17 +69,7 @@ Data Storage and Querying: The enriched and processed data in Synapse can now be
       
 
 
-     
-
-  
-
-
-
-
-
-
-
-
+    
 
 
 <br>
