@@ -123,10 +123,10 @@ A cloud storage service where the processed Parquet files are stored temporarily
  </br>
  
   <h3>Sql snippet:</h3>
-   - <h4>Stream Analytics job Query:</h4>
+   - <h4>SQL query for real-time data transformation.:</h4>
   https://github.com/aadarsh786/BookmyShow_Stream_Analysis/blob/main/stream_analytics_job_query.sql
    </br>
-   - <h4>Result Output will store in this table.:</h4>
+   - <h4>SQL script to create the destination table in Synapse Analytics:</h4>
   https://github.com/aadarsh786/BookmyShow_Stream_Analysis/blob/main/synapse_create_table.sql
   
   
