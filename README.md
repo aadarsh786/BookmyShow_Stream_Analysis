@@ -120,9 +120,11 @@ A cloud storage service where the processed Parquet files are stored temporarily
  </br>
  
   <h3>Sql snippet:</h3>
- - [Airflow-Dag-file](airflowjobprac.py) -  Defines the workflow and schedules the data pipeline tasks.  
+ - 
+  https://github.com/aadarsh786/BookmyShow_Stream_Analysis/blob/main/stream_analytics_job_query.sql
    </br>
- -  [Airflow-Dag-file](airflowjobprac.py) -  Defines the workflow and schedules the data pipeline tasks.  
+ -  
+  
   
   
 
